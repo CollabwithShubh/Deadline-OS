@@ -260,7 +260,7 @@ DeadlineOS/
 ## Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/DeadlineOS.git
+git clone https://github.com/CollabwithShubh/Deadline-OS.git
 
 cd DeadlineOS
 ```
@@ -315,7 +315,7 @@ Open the URL displayed in your terminal (typically `http://localhost:5173`) in y
 
 ---
 
-# 🌐 Deployment
+# 🌐 Deployment https://deadlineos-1036959946239.us-west1.run.app
 
 DeadlineOS is designed to be deployed using:
 
@@ -413,6 +413,9 @@ It helps others discover the project and motivates future development.
 
 ### **Plan. Execute. Recover.**
 
-Built with ❤️ using Google AI Studio, Gemini AI, Firebase and Google Cloud.
+Built with ❤️ using Gemini AI, Firebase ,Google Cloud and passionate developers who believe AI should help people execute, not just organize.
+Thank you for taking the time to explore DeadlineOS.
+
+Lots of Love ❤️
 
 </p>
