@@ -1,0 +1,116 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "System profile settings for the operator including daily goal limits and billing tier.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Normalized identifier computed from lowercase email address" },
+        "name": { "type": "string", "description": "Operator human display name" },
+        "email": { "type": "string", "format": "email", "description": "Operator email address" },
+        "avatar": { "type": "string", "description": "Unsplash profile avatar URL" },
+        "tier": { "type": "string", "enum": ["PRO", "ENTERPRISE"], "description": "Service billing subscription tier" },
+        "timezone": { "type": "string", "description": "System operational timezone" },
+        "dailyGoal": { "type": "number", "description": "Intended daily focus goal limit in hours" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "ISO date-time profile registration mark" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "ISO date-time profile update mark" }
+      },
+      "required": ["id", "name", "email", "tier", "timezone", "dailyGoal", "createdAt", "updatedAt"]
+    },
+    "Task": {
+      "title": "Task Record",
+      "description": "Deconstructed atomic task or goal deconstruction block.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique auto-generated document identifier" },
+        "userId": { "type": "string", "description": "Owner identifier matching the User profile document ID" },
+        "title": { "type": "string", "description": "Elegant, atomic focus objective" },
+        "description": { "type": "string", "description": "Detailed specifications summarizing scope requirements and criticality triggers" },
+        "status": { "type": "string", "enum": ["todo", "in_progress", "completed", "overdue"], "description": "Current lifecycle status" },
+        "priority": { "type": "string", "enum": ["low", "medium", "high", "critical"], "description": "Calculated focus priority" },
+        "deadline": { "type": "string", "description": "ISO String or YYYY-MM-DD due mark" },
+        "estimatedHours": { "type": "number", "description": "Estimated labor timeline in hours" },
+        "actualHours": { "type": "number", "description": "Accumulated active pomodoro duration in hours" },
+        "subtasks": { "type": "array", "description": "Milestone list mapping progress steps" },
+        "tags": { "type": "array", "description": "Atomic skill or contextual workspace qualifiers" },
+        "risk": { "type": "string", "enum": ["low", "medium", "high"], "description": "Cognitive risk factor forecast" },
+        "category": { "type": "string", "description": "Strategic core work vertical" },
+        "executionStrategy": { "type": "string", "description": "System-provided tactical recommendation to maintain focus" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "ISO compilation record timestamp" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "ISO modification record timestamp" }
+      },
+      "required": ["userId", "title", "status", "priority", "deadline", "estimatedHours", "actualHours", "subtasks", "tags", "risk", "category", "createdAt", "updatedAt"]
+    },
+    "Plan": {
+      "title": "AI Roadmap Plan",
+      "description": "Structured timeline and hazard assessment parsed from loose natural language prompts.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Plan unique identifier" },
+        "userId": { "type": "string", "description": "Owner identifier matching the User profile document ID" },
+        "prompt": { "type": "string", "description": "Loose objective prompt entered by the operator" },
+        "summary": { "type": "string", "description": "Strategic context executive summary compiled by Gemini" },
+        "tasks": { "type": "array", "description": "Compiled tasks scheduled under this roadmap" },
+        "riskAssessment": { "type": "object", "description": "Hazard forecasting assessment isolating context drift vectors" },
+        "timeline": { "type": "array", "description": "Milestone phases mapping progressive sequence layers" },
+        "isApproved": { "type": "boolean", "description": "Approval status to merge compiled roadmap tasks into operational sprint backlog" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "ISO date-time compile timestamp" }
+      },
+      "required": ["userId", "prompt", "summary", "tasks", "riskAssessment", "timeline", "isApproved", "createdAt"]
+    },
+    "Session": {
+      "title": "Focus Session Record",
+      "description": "A completed deep work run tracked within neural acoustic Chambers.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique session run tracker ID" },
+        "userId": { "type": "string", "description": "Owner identifier matching the User profile document ID" },
+        "taskId": { "type": "string", "description": "Associated task target identifier, if targeted specifically" },
+        "durationMinutes": { "type": "number", "description": "POMODORO length in minutes" },
+        "status": { "type": "string", "description": "Session completion state" },
+        "completed": { "type": "boolean", "description": "True if full duration completed without manual ejection" },
+        "completedAt": { "type": "string", "format": "date-time", "description": "ISO termination timestamp" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "ISO creation timestamp" }
+      },
+      "required": ["userId", "durationMinutes", "status", "completed", "createdAt"]
+    },
+    "Notification": {
+      "title": "System Notification",
+      "description": "Critical alerts, triage advice, and compliance monitoring logs compiled by the OS scheduler.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Alert unique tracking key" },
+        "userId": { "type": "string", "description": "Recipient operator identifier" },
+        "title": { "type": "string", "description": "Alert title header" },
+        "desc": { "type": "string", "description": "Alert descriptive message body" },
+        "type": { "type": "string", "enum": ["info", "warning", "success"], "description": "Severity classifier" },
+        "read": { "type": "boolean", "description": "Acknowledge read state" },
+        "time": { "type": "string", "description": "Human temporal offset description (e.g., 'Just now')" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "ISO broadcast timestamp" }
+      },
+      "required": ["userId", "title", "desc", "type", "read", "time", "createdAt"]
+    }
+  },
+  "firestore": {
+    "users": {
+      "schema": "User",
+      "description": "Global storage collection mapping user-specific SaaS workspace profiles."
+    },
+    "tasks": {
+      "schema": "Task",
+      "description": "Backlog items, goals, and deconstructed milestones assigned to operators."
+    },
+    "plans": {
+      "schema": "Plan",
+      "description": "AI-generated strategic plans and schedule forecasts awaiting operator approval."
+    },
+    "sessions": {
+      "schema": "Session",
+      "description": "Completed work sessions tracking active performance and metrics data."
+    },
+    "notifications": {
+      "schema": "Notification",
+      "description": "Operational alerts and real-time triage guidance messages."
+    }
+  }
+}
