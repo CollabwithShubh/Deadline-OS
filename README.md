@@ -160,19 +160,20 @@ Prerequisites
 * Gemini API Key
 
 ⸻
+🚀 Installation
 
-Installation
-'''
-git clone <repository-url>
+Clone the repository and install all required dependencies.
+
+git clone https://github.com/your-username/DeadlineOS.git
 cd DeadlineOS
 npm install
-'''
+
 ⸻
 
-Environment Variables
+🔑 Environment Variables
 
-Create a .env.local file and configure:
-'''
+Create a .env.local file in the root directory and add the following environment variables:
+
 GEMINI_API_KEY=YOUR_GEMINI_API_KEY
 # Firebase Configuration
 FIREBASE_API_KEY=
@@ -181,14 +182,19 @@ FIREBASE_PROJECT_ID=
 FIREBASE_STORAGE_BUCKET=
 FIREBASE_MESSAGING_SENDER_ID=
 FIREBASE_APP_ID=
-'''
+
+Note: Replace the placeholder values with your own Firebase project configuration and Gemini API key.
+
 ⸻
 
-Run the Application
-'''
+▶️ Run the Application
+
+Start the development server by running:
+
 npm run dev
-'''
-The application will start locally and be available in your browser.
+
+The application will start locally. Open the URL displayed in your terminal (typically http://localhost:5173) to access DeadlineOS.
+
 
 ⸻
 
